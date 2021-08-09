@@ -10,8 +10,8 @@ public:
 	UniquePtr(T* ptr);
 	~UniquePtr();
 	UniquePtr(UniquePtr<T>&) = delete;
-	UniquePtr<T>& operator = (UniquePtr<T>&) = delete;//É¾³ı¿½±´¹¹Ôìº¯Êı
-	UniquePtr(UniquePtr<T>&&);//¿ÉÒÔÊ¹ÓÃÒÆ¶¯¹¹Ôìº¯Êı
+	UniquePtr<T>& operator = (UniquePtr<T>&) = delete;//åˆ é™¤æ‹·è´å‡½æ•°
+	UniquePtr(UniquePtr<T>&&);//å¯ä»¥ä½¿ç”¨ç§»åŠ¨èµ‹å€¼å‡½æ•°
 	UniquePtr<T>& operator = (UniquePtr<T>&& p);
 	void swap(UniquePtr<T>& p);
 	
@@ -21,7 +21,7 @@ public:
 	T& operator*() {
 		return *ptr;
 	}
-	T* get()const {//·µ»ØÔ­Ê¼Ö¸Õë
+	T* get()const {//è¿”å›åŸå§‹æŒ‡é’ˆ
 		return ptr;
 	}
 
@@ -52,14 +52,14 @@ UniquePtr<T>::~UniquePtr() {
 	}
 }
 
-//ÒÆ½»ËùÓĞÈ¨
+//ç§»äº¤æ‰€æœ‰æƒ
 template<typename T>
 UniquePtr<T>::UniquePtr(UniquePtr<T>&& p):ptr(p.ptr) {
 	 cout << "move ptr" << endl;
 	 p.ptr = nullptr;
 }
 
-//ÒÆ¶¯¸³Öµ
+//ç§»åŠ¨èµ‹å€¼
 template<typename T>
 UniquePtr<T>& UniquePtr<T>::operator=(UniquePtr<T>&& p)
 {
